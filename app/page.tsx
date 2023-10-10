@@ -3,7 +3,7 @@ import { createChart } from "lightweight-charts";
 import { useEffect, useRef } from "react";
 
 export default function Home() {
-  const chartRef = useRef("");
+  const chartRef = useRef<HTMLDivElement | string>("");
   useEffect(() => {
     const initialData = [
       { time: "2018-12-22", value: 32.51 },
@@ -33,7 +33,9 @@ export default function Home() {
       bottomColor: "rgba(41,98,255,0.28)",
     });
     series.setData(initialData);
-    return () => [chart.remove()];
+    return () => {
+      chart.remove();
+    };
   }, []);
   return (
     <>
